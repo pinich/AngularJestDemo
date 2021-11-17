@@ -14,13 +14,14 @@ export class AppComponent {
 
   repoNames: string[] = [];
 
-  constructor(private service: MyServiceService) { }
-  searchRepos() {
+  constructor(
+    private service: MyServiceService
+  ) { }
 
+  searchRepos() {
     this.service.getRemoteData(this.username).
       subscribe((results: GitHubResponse[]) => {
-        this.repoNames = results.map(res=>res.name);
-        console.log(results.length);
+        this.repoNames = results.map(res => res.name);
       });
   }
 }
