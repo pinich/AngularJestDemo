@@ -26,12 +26,8 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-      imports: [
-        FormsModule
-      ],
+      declarations: [AppComponent],
+      imports: [FormsModule],
       providers: [
         {
           provide: MyServiceService,
@@ -61,8 +57,10 @@ describe('AppComponent', () => {
 
   it('should test search Repos method', () => {
     component.username = 'Test1';
+    const spyOnGetRemoteData = jest.spyOn(component['service'],'getRemoteData');
     component.searchRepos();
     expect(component.repoNames[0]).toEqual('repo1');
+    expect(spyOnGetRemoteData).toHaveBeenCalledTimes(1);
   });
 
 });
